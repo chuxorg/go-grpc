@@ -1,3 +1,4 @@
+//go:generate mockgen -source=rocket.go -destination=mock_rocket.go -package=rocket github.com/chuxorg/go-grpc/internal/rocket
 package rocket
 
 import "context"
