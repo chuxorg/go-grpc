@@ -14,8 +14,8 @@ type Rocket struct {
 
 // Defines a Store interface for database implementation
 type Store interface {
-	GetRocketById(id string) (*Rocket, error)
-	InsertRocket(r *Rocket) (Rocket, error)
+	GetRocketById(id string) (Rocket, error)
+	InsertRocket(r Rocket) (Rocket, error)
 	DeleteRocket(id string) error
 }
 
@@ -37,11 +37,11 @@ func (s *Service) GetRocketById(ctx context.Context, id string) (Rocket, error) 
 	if err != nil {
 		return Rocket{}, err
 	}
-	return *rocket, nil
+	return rocket, nil
 }
 
 // InsertRocket inserts a rocket into store
-func (s *Service) InsertRocket(ctx context.Context, r *Rocket) (Rocket, error) {
+func (s *Service) InsertRocket(ctx context.Context, r Rocket) (Rocket, error) {
 	rocket, err := s.Store.InsertRocket(r)
 	if err != nil {
 		return Rocket{}, err
@@ -50,7 +50,7 @@ func (s *Service) InsertRocket(ctx context.Context, r *Rocket) (Rocket, error) {
 }
 
 // DeleteRocket deletes a rocket from store
-func (s *Service) DeleteRocket(ctx context.Context, id string) error {
+func (s *Service) DeleteRocket(id string) error {
 	err := s.Store.DeleteRocket(id)
 	if err != nil {
 		return err
