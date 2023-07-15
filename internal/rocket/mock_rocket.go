@@ -48,10 +48,10 @@ func (mr *MockStoreMockRecorder) DeleteRocket(id interface{}) *gomock.Call {
 }
 
 // GetRocketById mocks base method.
-func (m *MockStore) GetRocketById(id string) (*Rocket, error) {
+func (m *MockStore) GetRocketById(id string) (Rocket, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetRocketById", id)
-	ret0, _ := ret[0].(*Rocket)
+	ret0, _ := ret[0].(Rocket)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -63,7 +63,7 @@ func (mr *MockStoreMockRecorder) GetRocketById(id interface{}) *gomock.Call {
 }
 
 // InsertRocket mocks base method.
-func (m *MockStore) InsertRocket(r *Rocket) (Rocket, error) {
+func (m *MockStore) InsertRocket(r Rocket) (Rocket, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "InsertRocket", r)
 	ret0, _ := ret[0].(Rocket)
